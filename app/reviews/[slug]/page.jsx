@@ -11,6 +11,12 @@ export async function generateMetadata({params:{slug}}){
     return {title : review.title}
 }
 
+export async function generateStaticParams(){
+    const slugs = await getSlugs();
+    
+    return slugs.map(slug =>({slug}))
+}
+
 const page = async ({params:{slug}}) => {
      
     const files =await readData(slug);
